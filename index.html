@@ -42,19 +42,19 @@
         </div>
 
         <div class="card">
-          <h3 class="card-header">Find a City</h3>
-          <div id="city-buttons" class="card-body">
-            <button class="btn">Austin</button>
-            <button class="btn">San Francisco</button>
-            <button class="btn">New York</button>
-          </div>
+          <div class ="cities-container">
+          <h3 class="card-header"> Recent Searches</h3>
         </div>
       </div>
 
-      <div class="col-12 col-md-8">
-        <h2 class="subtitle"><span id="results-city"></span></h2>
-        <div id="cities-container" class="list-group"></div>
-      </div>
+      <div class="col-12 col-md-9">
+        <div class = "row border selected-city" id = "current-forecast">
+            <div class = "col-12">
+                <h2 id="searched-city"></h2>
+                <div id = "current-weather-container" class = "list-group"></div>
+            </div>  
+        </div>
+
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
