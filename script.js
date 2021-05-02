@@ -5,6 +5,9 @@ var weatherContainerEl = document.querySelector("#current-weather-container");
 var citySearchInputEl = document.querySelector("#searched-city");
 var cityEl = document.querySelector("#results-city");
 var cityInputEl = document.querySelector("#results-city");
+var lastSearchButtonEl = document.querySelector("#last-search-button");
+
+var cities = [];
 
 //button function
 var citySearch = function (event) {
@@ -15,7 +18,7 @@ var citySearch = function (event) {
   if (cityState) {
     getWeather(cityState);
 
-    citiesContainerEl.textContent = "";
+    citySearchInputEl.textContent = "";
     cityNameEl.textContent = "";
   } else {
     alert("Please enter a city to start your search");
@@ -25,9 +28,10 @@ var citySearch = function (event) {
     localStorage.setItem("cities", JSON.stringify(cities));
   };
   saveSearch();
-  pastSearch(cityState);
+  lastSearch(cityState);
 };
 
+//fetch to get weather
 var getWeather = function (city) {
   var apiWeather =
     "https://api.openweathermap.org/data/2.5/weather?q=Seattle&APPID=9fc0d146e8b9c3492bad6e84401335c1";
@@ -39,6 +43,7 @@ var getWeather = function (city) {
   });
 };
 
+//function to show weather
 var displayWeather = function (weather, searchCity) {
   weatherContainerEl.textContent = "";
   citySearchInputEl.textContent = searchCity;
@@ -74,6 +79,7 @@ var displayWeather = function (weather, searchCity) {
   weatherContainerEl.appendChild(windSpeed);
 };
 
+//functionto call UV so that it can be highlighted
 var getUv = function (lat, lon) {
   var apiKey = "9fc0d146e8b9c3492bad6e84401335c1";
   var apiWeather = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
@@ -84,7 +90,7 @@ var getUv = function (lat, lon) {
     });
   });
 };
-
+//function to show UV index
 var displayUv = function (uvShow) {
   var uv = document.createElement("div");
   uv.textContent = "UV Index: ";
@@ -106,5 +112,24 @@ var displayUv = function (uvShow) {
   }
 };
 
+//create a button that shows the last city that was searched
+var lastSearch = function (lastSearch) {
+  lastSearchEl = document.createElement("button");
+  lastSearchEl.textContent = lastSearch;
+  lastSearchEl.setAttribute("data-city", lastSearch);
+  lastSearchEl.setAttribute("type", "submit");
+
+  lastSearchButtonEl.prepend(lastSearchEl);
+};
+
+//show the last place that was searched
+var lastSearchPlace = function (event) {
+  var cityState = event.target.getAttribute("data-city");
+  if (cityState) {
+    getWeather(cityState);
+  }
+};
+
 userFormEl.addEventListener("submit", citySearch);
 cityNameEl.addEventListener("click", displayWeather);
+lastSearchButtonEl.addEventListener("click", lastSearch);
