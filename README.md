@@ -12,7 +12,7 @@ This project uses html, css and javascript elements. Bootstrap is used in order 
 
 Here is a mockup of the page:
 
-![portfoliomenu](images/mockupimage.png)
+![portfoliomenu](images/newmockup.png)
 
 Link to application:
 [https://vinetteg.github.io/WeatherDashboard_VGUTIERREZ/]
