@@ -25,7 +25,7 @@ var citySearch = function (event) {
   }
 
   var saveSearch = function () {
-    localStorage.setItem("cities", JSON.stringify(cities));
+    localStorage.setItem("cities", JSON.stringify(JSON.stringify(cities)));
   };
   saveSearch();
   lastSearch(cityState);
@@ -33,8 +33,7 @@ var citySearch = function (event) {
 
 //fetch to get weather
 var getWeather = function (city) {
-  var apiWeather =
-    "https://api.openweathermap.org/data/2.5/weather?q=Seattle&APPID=9fc0d146e8b9c3492bad6e84401335c1";
+  var apiWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9fc0d146e8b9c3492bad6e84401335c1&units=imperial`;
 
   fetch(apiWeather).then(function (response) {
     response.json().then(function (data) {
@@ -69,7 +68,7 @@ var displayWeather = function (weather, searchCity) {
   //uvindex
 
   // var uv = document.createElement("span");
-  // uv.textContent = "UV Index: " + weather.uv.index;
+  // uv.textContent = "UV Index: " + weather.current.uvi;
 
   //appends so that pieces will show in container
   weatherContainerEl.appendChild(temperature);
@@ -132,4 +131,4 @@ var lastSearchPlace = function (event) {
 
 userFormEl.addEventListener("submit", citySearch);
 cityNameEl.addEventListener("click", displayWeather);
-lastSearchButtonEl.addEventListener("click", lastSearch);
+lastSearchButtonEl.addEventListener("click", lastSearchPlace);
