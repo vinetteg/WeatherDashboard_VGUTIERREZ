@@ -11,7 +11,8 @@ This project uses html, css and javascript elements. Bootstrap is used in order 
 ## Technologies Used
 
 [Foundation](https://get.foundation/) <br>
-[Moment.js](https://momentjs.com/)
+[Moment.js](https://momentjs.com/) <br>
+[Bootstrap v4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 
 Server-side APIs<br>
 [OpenWeatherAPI](https://openweathermap.org/api/one-call-api) <br>
