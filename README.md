@@ -10,7 +10,6 @@ This project uses html, css and javascript elements. Bootstrap is used in order 
 
 ## Technologies Used
 
-[Foundation](https://get.foundation/) <br>
 [Moment.js](https://momentjs.com/) <br>
 [Bootstrap v4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 
