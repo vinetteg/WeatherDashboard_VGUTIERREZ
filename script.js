@@ -6,6 +6,7 @@ var citySearchInputEl = document.querySelector("#searched-city");
 var cityEl = document.querySelector("#results-city");
 var cityInputEl = document.querySelector("#results-city");
 var lastSearchButtonEl = document.querySelector("#last-search-button");
+var fiveDaySearchEl = document.querySelector("#five-day-search");
 
 var cities = [];
 
@@ -80,8 +81,7 @@ var displayWeather = function (weather, searchCity) {
 
 //functionto call UV so that it can be highlighted
 var getUv = function (lat, lon) {
-  var apiKey = "9fc0d146e8b9c3492bad6e84401335c1";
-  var apiWeather = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+  var apiWeather = `https://api.openweathermap.org/data/2.5/uvi?appid=e9fc0d146e8b9c3492bad6e84401335c1&lat=${lat}&lon=${lon}`;
 
   fetch(apiWeather).then(function (response) {
     response.json().then(function (data) {
@@ -109,6 +109,25 @@ var displayUv = function (uvShow) {
 
     weatherContainerEl.appendChild(uv);
   }
+};
+
+//function to fetch 5 day forcast
+var get5Days = function (fiveDay) {
+  var apiWeather =
+    "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={time}&appid=e9fc0d146e8b9c3492bad6e84401335c1&units=imperial";
+
+  fetch(apiWeather).then(function (response) {
+    response.json().then(function (data) {
+      display5Days(data, fiveDay);
+    });
+  });
+};
+
+//function to display 5 day forcast
+var display5Days = function (DaysShow) {
+  var days = document.createElement("div");
+  fiveDaySearchEl.textContent = "";
+  fiveDaySearchEl.textContent.classList = DaysShow;
 };
 
 //create a button that shows the last city that was searched
