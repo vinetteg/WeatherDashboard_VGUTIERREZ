@@ -6,7 +6,7 @@ var citySearchInputEl = document.querySelector("#searched-city");
 var cityEl = document.querySelector("#results-city");
 var cityInputEl = document.querySelector("#results-city");
 var lastSearchButtonEl = document.querySelector("#last-search-button");
-var fiveDaySearchEl = document.querySelector("#five-day-search");
+var fiveDayShowEl = document.querySelector("#five-day-search");
 
 var cities = [];
 
@@ -30,6 +30,7 @@ var citySearch = function (event) {
   };
   saveSearch();
   lastSearch(cityState);
+  get5Days(cityState);
 };
 
 //fetch to get weather
@@ -112,13 +113,33 @@ var displayUv = function (uvShow) {
 };
 
 //function to fetch 5 day forcast
-var get5Days = function (fiveDay) {
-  var apiWeather =
-    "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={time}&appid=e9fc0d146e8b9c3492bad6e84401335c1&units=imperial";
+var get5Days = function (cityName) {
+  var apiWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9fc0d146e8b9c3492bad6e84401335c1`;
 
   fetch(apiWeather).then(function (response) {
     response.json().then(function (data) {
-      display5Days(data, fiveDay);
+      for (var i = 0; i < data.list.length; i = i + 9) {
+        var fiveDayShow = document.createElement("div");
+        fiveDayShow.textContent = "5 Day Forcast";
+        fiveDayShow.textContent.classList = "list-group-item";
+
+        var temperature = document.createElement("p");
+        temperature.textContent =
+          "Temperature:" + data.list[i].main.temp + "°F";
+        temperature.classList = "list-group-item";
+        fiveDayShowEl.append(temperature);
+
+        var humidity = document.createElement("p");
+        humidity.textContent = "Humidity:" + data.list[i].main.humidity;
+        humidity.classList = "list-group-item";
+        fiveDayShowEl.append(humidity);
+
+        var windspeed = document.createElement("p");
+        windspeed.textContent = "Humidity:" + data.list[i].wind.speed;
+        windspeed.classList = "list-group-item";
+        fiveDayShowEl.append(windspeed);
+        console.log(data.list[i]);
+      }
     });
   });
 };
