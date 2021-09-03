@@ -114,7 +114,7 @@ var displayUv = function (uvShow) {
 
 //function to fetch 5 day forcast
 var get5Days = function (cityName) {
-  var apiWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9fc0d146e8b9c3492bad6e84401335c1`;
+  var apiWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9fc0d146e8b9c3492bad6e84401335c1&units=imperial`;
 
   fetch(apiWeather).then(function (response) {
     response.json().then(function (data) {
@@ -122,6 +122,11 @@ var get5Days = function (cityName) {
         var fiveDayShow = document.createElement("div");
         fiveDayShow.textContent = "5 Day Forcast";
         fiveDayShow.textContent.classList = "list-group-item";
+
+        var date = document.createElement("p");
+        date.textContent = "Date:" + data.list[i].clouds.dt_txt;
+        date.classList = "list-group-item";
+        fiveDayShowEl.append(date);
 
         var temperature = document.createElement("p");
         temperature.textContent =
@@ -138,6 +143,7 @@ var get5Days = function (cityName) {
         windspeed.textContent = "Humidity:" + data.list[i].wind.speed;
         windspeed.classList = "list-group-item";
         fiveDayShowEl.append(windspeed);
+
         console.log(data.list[i]);
       }
     });
