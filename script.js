@@ -70,7 +70,7 @@ var displayWeather = function (weather, searchCity) {
   //uvindex
 
   // var uv = document.createElement("span");
-  // uv.textContent = "UV Index: " + weather.current.uvi;
+  // uv.textContent = "UV Index: " + weather.daily.uvi;
 
   //appends so that pieces will show in container
   weatherContainerEl.appendChild(temperature);
@@ -78,6 +78,8 @@ var displayWeather = function (weather, searchCity) {
   weatherContainerEl.appendChild(humidity);
 
   weatherContainerEl.appendChild(windSpeed);
+
+  // weatherContainerEl.appendChild(uv);
 };
 
 //functionto call UV so that it can be highlighted
@@ -140,7 +142,7 @@ var get5Days = function (cityName) {
         fiveDayShowEl.append(humidity);
 
         var windspeed = document.createElement("p");
-        windspeed.textContent = "Humidity:" + data.list[i].wind.speed;
+        windspeed.textContent = "Wind Speed:" + data.list[i].wind.speed + "mph";
         windspeed.classList = "list-group-item";
         fiveDayShowEl.append(windspeed);
 
