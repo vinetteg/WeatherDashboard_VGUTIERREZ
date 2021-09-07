@@ -82,7 +82,7 @@ var displayWeather = function (weather, searchCity) {
 
 //functionto call UV so that it can be highlighted
 var getUv = function (lat, lon) {
-  var apiWeather = `https://api.openweathermap.org/data/2.5/uvi?appid=e9fc0d146e8b9c3492bad6e84401335c1&lat=${lat}&lon=${lon}`;
+  var apiWeather = `https://api.openweathermap.org/data/2.5/uvi?appid=9fc0d146e8b9c3492bad6e84401335c1&lat=${lat}&lon=${lon}`;
 
   fetch(apiWeather).then(function (response) {
     response.json().then(function (data) {
@@ -124,7 +124,7 @@ var get5Days = function (cityName) {
         fiveDayShow.textContent.classList = "list-group-item";
 
         var date = document.createElement("p");
-        date.textContent = "Date:" + data.list[i].clouds.dt_txt;
+        date.textContent = data.list[i].clouds.dt_txt;
         date.classList = "list-group-item";
         fiveDayShowEl.append(date);
 
